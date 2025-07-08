@@ -29,7 +29,8 @@ class FbsShipmentsDeleteExemplarMandatoryMarkClient
      * @param string $shipmentId Shipment ID (1–20 digits).
      * @param FbsShipmentsDeleteExemplarMandatoryMarkRequest $request Request object with exemplar ID.
      * @return bool True if the operation is successful.
-     * @throws ApiException If the request fails or shipmentId is invalid.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails or shipmentId is invalid.
      */
     public function deleteExemplarMandatoryMark(string $shipmentId, FbsShipmentsDeleteExemplarMandatoryMarkRequest $request): bool
     {

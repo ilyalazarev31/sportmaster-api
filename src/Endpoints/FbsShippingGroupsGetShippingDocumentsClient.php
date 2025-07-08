@@ -29,7 +29,8 @@ class FbsShippingGroupsGetShippingDocumentsClient
      *
      * @param FbsShippingGroupsGetShippingDocumentsRequest $request Request object with shipping group ID and document types.
      * @return FbsShippingGroupsGetShippingDocumentsResponse Response containing the document links.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function getShippingDocuments(FbsShippingGroupsGetShippingDocumentsRequest $request): FbsShippingGroupsGetShippingDocumentsResponse
     {

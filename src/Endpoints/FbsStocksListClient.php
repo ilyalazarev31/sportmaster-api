@@ -29,7 +29,8 @@ class FbsStocksListClient
      *
      * @param FbsStocksListRequest $request Request object with warehouse ID, limit, and offset.
      * @return FbsStocksListResponse Response containing stock details and pagination.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function list(FbsStocksListRequest $request): FbsStocksListResponse
     {

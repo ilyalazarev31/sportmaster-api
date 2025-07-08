@@ -29,7 +29,8 @@ class FbsShippingGroupsListClient
      *
      * @param FbsShippingGroupsListRequest $request Request object with shipping group IDs, shipment IDs, statuses, limit, and offset.
      * @return FbsShippingGroupsListResponse Response containing the list of shipping groups and pagination.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function list(FbsShippingGroupsListRequest $request): FbsShippingGroupsListResponse
     {

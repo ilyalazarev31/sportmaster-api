@@ -30,7 +30,8 @@ class FbsShipmentsSetExemplarMandatoryMarkClient
      * @param string $shipmentId Shipment ID (1–14 digits).
      * @param FbsShipmentsSetExemplarMandatoryMarkRequest $request Request object with exemplar ID and mandatory mark.
      * @return FbsShipmentsSetExemplarMandatoryMarkResponse Response containing verification results.
-     * @throws ApiException If the request fails or shipmentId is invalid.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails or shipmentId is invalid.
      */
     public function setExemplarMandatoryMark(string $shipmentId, FbsShipmentsSetExemplarMandatoryMarkRequest $request): FbsShipmentsSetExemplarMandatoryMarkResponse
     {

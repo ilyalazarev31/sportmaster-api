@@ -29,7 +29,8 @@ class ProductPricesGetImportTaskByIdClient
      *
      * @param ProductPricesGetImportTaskByIdRequest $request Request object with task ID.
      * @return ProductPricesGetImportTaskByIdResponse Response object containing task details.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function get(ProductPricesGetImportTaskByIdRequest $request): ProductPricesGetImportTaskByIdResponse
     {

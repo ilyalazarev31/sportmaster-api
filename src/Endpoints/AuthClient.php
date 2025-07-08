@@ -29,7 +29,8 @@ class AuthClient
      *
      * @param AuthRequest $request Authentication request with API key.
      * @return AuthResponse Response containing access token, expiration, and token type.
-     * @throws ApiException If the authentication request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the authentication request fails.
      */
     public function authenticate(AuthRequest $request): AuthResponse
     {

@@ -29,7 +29,8 @@ class FbsStocksCreateImportTaskClient
      *
      * @param FbsStocksCreateImportTaskRequest $request Request object with warehouse ID and stock items.
      * @return FbsStocksCreateImportTaskResponse Response containing the task ID.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function create(FbsStocksCreateImportTaskRequest $request): FbsStocksCreateImportTaskResponse
     {

@@ -28,7 +28,8 @@ class FbsShipmentsRejectClient
      *
      * @param FbsShipmentsRejectRequest $request Request object with shipment ID and reason.
      * @return bool True if the operation is successful.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function reject(FbsShipmentsRejectRequest $request): bool
     {

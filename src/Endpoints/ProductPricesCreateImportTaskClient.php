@@ -29,7 +29,8 @@ class ProductPricesCreateImportTaskClient
      *
      * @param ProductPricesCreateImportTaskRequest $request Request object with price data.
      * @return ProductPricesCreateImportTaskResponse Response object containing the task ID.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function create(ProductPricesCreateImportTaskRequest $request): ProductPricesCreateImportTaskResponse
     {

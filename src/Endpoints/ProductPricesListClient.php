@@ -29,7 +29,8 @@ class ProductPricesListClient
      *
      * @param ProductPricesListRequest $request Request object with offer IDs and pagination parameters.
      * @return ProductPricesListResponse Response object containing the list of prices and pagination.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function list(ProductPricesListRequest $request): ProductPricesListResponse
     {

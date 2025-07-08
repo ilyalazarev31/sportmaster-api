@@ -24,6 +24,7 @@ class FileTokenStorage implements TokenStorageInterface
      *
      * @param string $token Access token.
      * @param int $expiresAt Unix timestamp when the token expires.
+     * @throws \JsonException
      */
     public function saveToken(string $token, int $expiresAt): void
     {
@@ -38,6 +39,7 @@ class FileTokenStorage implements TokenStorageInterface
      * Retrieves the access token.
      *
      * @return string|null The access token or null if not found.
+     * @throws \JsonException
      */
     public function getToken(): ?string
     {
@@ -52,6 +54,7 @@ class FileTokenStorage implements TokenStorageInterface
      * Checks if the token has expired.
      *
      * @return bool True if the token is expired or not found, false otherwise.
+     * @throws \JsonException
      */
     public function isTokenExpired(): bool
     {

@@ -29,7 +29,8 @@ class FbsShippingGroupsClient
      *
      * @param FbsShippingGroupsRequest $request Request object with shipment IDs and courier company ID.
      * @return FbsShippingGroupsResponse Response containing the created shipping group details.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function create(FbsShippingGroupsRequest $request): FbsShippingGroupsResponse
     {

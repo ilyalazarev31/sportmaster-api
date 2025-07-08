@@ -29,7 +29,8 @@ class FbsWarehousesListClient
      *
      * @param FbsWarehousesListRequest $request Request object with limit and offset.
      * @return FbsWarehousesListResponse Response containing the list of warehouses and pagination.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function list(FbsWarehousesListRequest $request): FbsWarehousesListResponse
     {

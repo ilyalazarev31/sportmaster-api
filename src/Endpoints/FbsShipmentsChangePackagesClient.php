@@ -30,7 +30,8 @@ class FbsShipmentsChangePackagesClient
      * @param string $shipmentId Shipment ID (1–20 digits).
      * @param FbsShipmentsChangePackagesRequest $request Request object with package details.
      * @return FbsShipmentsChangePackagesResponse Response containing the updated shipment details.
-     * @throws ApiException If the request fails or shipmentId is invalid.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails or shipmentId is invalid.
      */
     public function changePackages(string $shipmentId, FbsShipmentsChangePackagesRequest $request): FbsShipmentsChangePackagesResponse
     {

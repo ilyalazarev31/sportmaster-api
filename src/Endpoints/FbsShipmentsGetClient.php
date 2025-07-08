@@ -28,7 +28,8 @@ class FbsShipmentsGetClient
      *
      * @param string $shipmentId Shipment ID (1–14 digits).
      * @return FbsShipmentsGetResponse Response containing shipment details.
-     * @throws ApiException If the request fails or shipmentId is invalid.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails or shipmentId is invalid.
      */
     public function get(string $shipmentId): FbsShipmentsGetResponse
     {

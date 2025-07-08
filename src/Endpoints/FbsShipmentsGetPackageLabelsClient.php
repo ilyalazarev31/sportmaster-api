@@ -29,7 +29,8 @@ class FbsShipmentsGetPackageLabelsClient
      *
      * @param FbsShipmentsGetPackageLabelsRequest $request Request object with shipment IDs.
      * @return FbsShipmentsGetPackageLabelsResponse Response containing file content and results.
-     * @throws ApiException If the request fails.
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails.
      */
     public function getPackageLabels(FbsShipmentsGetPackageLabelsRequest $request): FbsShipmentsGetPackageLabelsResponse
     {

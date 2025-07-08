@@ -78,8 +78,8 @@ class Client
      * @param string $endpoint API endpoint (e.g., '/api/auth/token').
      * @param array $data Request data.
      * @return array Response data.
-     * @throws ApiException If the request fails or token is invalid.
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
+     * @throws \Sportmaster\Api\Exception\ApiException If the request fails or token is invalid.
      */
     public function request(string $method, string $endpoint, array $data = []): array
     {
