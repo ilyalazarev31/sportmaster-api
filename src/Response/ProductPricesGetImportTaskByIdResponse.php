@@ -2,6 +2,8 @@
 
 namespace Sportmaster\Api\Response;
 
+use InvalidArgumentException;
+
 /**
  * Response object for retrieving the status of a product prices import task.
  */
@@ -26,10 +28,10 @@ class ProductPricesGetImportTaskByIdResponse
     public function __construct(?string $taskId, ?string $statusDate, ?string $createDate, ?string $status, array $productPrices)
     {
         if ($statusDate !== null && !preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:[+-]\d{2}:\d{2}|Z)$/', $statusDate)) {
-            throw new \InvalidArgumentException('Invalid statusDate format, must be ISO 8601');
+            throw new InvalidArgumentException('Invalid statusDate format, must be ISO 8601');
         }
         if ($createDate !== null && !preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:[+-]\d{2}:\d{2}|Z)$/', $createDate)) {
-            throw new \InvalidArgumentException('Invalid createDate format, must be ISO 8601');
+            throw new InvalidArgumentException('Invalid createDate format, must be ISO 8601');
         }
         $this->taskId = $taskId;
         $this->statusDate = $statusDate;

@@ -8,7 +8,7 @@ use Sportmaster\Api\Response\FbsStocksListResponse;
 use Sportmaster\Api\Exception\ApiException;
 
 /**
- * Client for listing FBS stocks from the Sportmaster Seller API.
+ * Client for retrieving stock information for a warehouse from the Sportmaster Seller API.
  */
 class FbsStocksListClient
 {
@@ -25,10 +25,10 @@ class FbsStocksListClient
     }
 
     /**
-     * Retrieves a list of FBS stocks for a specific warehouse.
+     * Retrieves stock information for a specified warehouse.
      *
      * @param FbsStocksListRequest $request Request object with warehouse ID, limit, and offset.
-     * @return FbsStocksListResponse Response containing the list of stocks and pagination.
+     * @return FbsStocksListResponse Response containing stock details and pagination.
      * @throws ApiException If the request fails.
      */
     public function list(FbsStocksListRequest $request): FbsStocksListResponse
@@ -44,12 +44,10 @@ class FbsStocksListClient
 
             return new FbsStocksListResponse(
                 $response['stocks'] ?? [],
-                $response['pagination']['limit'] ?? null,
-                $response['pagination']['offset'] ?? null,
-                $response['pagination']['total'] ?? null
+                $response['pagination'] ?? []
             );
         } catch (ApiException $e) {
-            $this->client->getLogger()->error("Failed to list FBS stocks: {$e->getMessage()}, Code: {$e->getErrorCode()}");
+            $this->client->getLogger()->error("Failed to list stocks: {$e->getMessage()}, Code: {$e->getErrorCode()}");
             throw $e;
         }
     }

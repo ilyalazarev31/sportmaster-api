@@ -3,7 +3,9 @@
 namespace Sportmaster\Api;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Sportmaster\Api\TokenStorage\TokenStorageInterface;
@@ -28,8 +30,8 @@ class Client
      * Client constructor.
      *
      * @param ClientInterface|null $httpClient HTTP client implementation (defaults to Guzzle).
-     * @param TokenStorageInterface $tokenStorage Token storage implementation.
-     * @param LoggerInterface $logger Logger implementation.
+     * @param \Sportmaster\Api\TokenStorage\TokenStorageInterface|null $tokenStorage Token storage implementation.
+     * @param \Psr\Log\LoggerInterface|null $logger Logger implementation.
      * @param string $baseUri Base URI for the API (e.g., 'https://api-seller.sportmaster.ru').
      */
     public function __construct(
@@ -64,7 +66,7 @@ class Client
     public function setClientId(string $clientId): void
     {
         if (!preg_match('/^\d{1,20}$/', $clientId)) {
-            throw new \InvalidArgumentException('Invalid Client-ID format: ' . $clientId);
+            throw new InvalidArgumentException('Invalid Client-ID format: ' . $clientId);
         }
         $this->clientId = $clientId;
     }
@@ -77,6 +79,7 @@ class Client
      * @param array $data Request data.
      * @return array Response data.
      * @throws ApiException If the request fails or token is invalid.
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function request(string $method, string $endpoint, array $data = []): array
     {
@@ -108,11 +111,11 @@ class Client
 
             $this->logger->info("Request successful: {$method} {$endpoint}");
 
-            return json_decode($response->getBody()->getContents(), true);
-        } catch (RequestException $e) {
+            return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+        } catch (RequestException|GuzzleException $e) {
             $this->logger->error("Request failed: {$method} {$endpoint}, Error: {$e->getMessage()}");
             if ($e->hasResponse()) {
-                $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+                $response = json_decode($e->getResponse()->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
                 $errorCode = $response['errorCode'] ?? 'UNKNOWN';
                 $errorMessage = $response['errorMessage'] ?? $e->getMessage();
                 throw new ApiException($errorMessage, $e->getResponse()->getStatusCode(), $errorCode);

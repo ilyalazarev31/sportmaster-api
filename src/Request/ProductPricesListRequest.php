@@ -1,5 +1,7 @@
 <?php
 namespace Sportmaster\Api\Request;
+use InvalidArgumentException;
+
 /**
  * Request object for listing product prices.
  */
@@ -19,20 +21,20 @@ class ProductPricesListRequest
     public function __construct(?array $offerIds = null, ?int $limit = 20, ?int $offset = 0)
     {
         if ($offerIds !== null && count($offerIds) > 1000) {
-            throw new \InvalidArgumentException('offerIds cannot exceed 1000 items');
+            throw new InvalidArgumentException('offerIds cannot exceed 1000 items');
         }
         if ($offerIds !== null) {
             foreach ($offerIds as $offerId) {
-                if (!preg_match('/^[A-Za-zА-Яа-я0-9 #+*-./^_"]{1,50}$/', $offerId)) {
-                    throw new \InvalidArgumentException('Invalid offerId format: ' . $offerId);
+                if (!preg_match('/^[A-Za-zА-Яа-я0-9 #+*-.\/^_"]{1,50}$/u', $offerId)) {
+                    throw new InvalidArgumentException('Invalid offerId format: ' . $offerId);
                 }
             }
         }
         if ($limit !== null && ($limit < 0 || $limit > 1000)) {
-            throw new \InvalidArgumentException('Limit must be between 0 and 1000');
+            throw new InvalidArgumentException('Limit must be between 0 and 1000');
         }
         if ($offset !== null && $offset < 0) {
-            throw new \InvalidArgumentException('Offset must be non-negative');
+            throw new InvalidArgumentException('Offset must be non-negative');
         }
         $this->offerIds = $offerIds;
         $this->limit = $limit;

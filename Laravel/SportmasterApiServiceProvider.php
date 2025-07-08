@@ -12,12 +12,15 @@ use Sportmaster\Api\TokenStorage\FileTokenStorage;
  */
 class SportmasterApiServiceProvider extends ServiceProvider
 {
+    private $app;
+
     /**
      * Register services.
+     * @throws \Exception
      */
     public function register(): void
     {
-        $this->app->singleton(Client::class, function ($app) {
+        $this->app->singleton(Client::class, function () {
             return new Client(
                 null,
                 new FileTokenStorage(storage_path('.sportmaster_token.json')),

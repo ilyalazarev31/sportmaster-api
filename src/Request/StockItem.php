@@ -2,6 +2,8 @@
 
 namespace Sportmaster\Api\Request;
 
+use InvalidArgumentException;
+
 /**
  * Stock item for FBS stock import tasks.
  */
@@ -19,11 +21,11 @@ class StockItem
      */
     public function __construct(string $offerId, int $warehouseStock)
     {
-        if (!preg_match('/^[A-Za-zА-Яа-я0-9 #+*-.\\/^_"]{1,50}$/', $offerId)) {
-            throw new \InvalidArgumentException('Invalid offerId format, must be 1–50 characters');
+        if (!preg_match('/^[A-Za-zА-Яа-я0-9 #+*-.\/^_"]{1,50}$/u', $offerId)) {
+            throw new InvalidArgumentException('Invalid offerId format, must be 1–50 characters');
         }
         if ($warehouseStock < 0) {
-            throw new \InvalidArgumentException('Warehouse stock must be greater than or equal to 0');
+            throw new InvalidArgumentException('Warehouse stock must be greater than or equal to 0');
         }
         $this->offerId = $offerId;
         $this->warehouseStock = $warehouseStock;

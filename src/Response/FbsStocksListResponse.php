@@ -3,29 +3,23 @@
 namespace Sportmaster\Api\Response;
 
 /**
- * Response object for listing FBS stocks.
+ * Response object for retrieving stock information for a warehouse.
  */
 class FbsStocksListResponse
 {
     private array $stocks;
-    private ?int $limit;
-    private ?int $offset;
-    private ?int $total;
+    private array $pagination;
 
     /**
      * FbsStocksListResponse constructor.
      *
-     * @param array $stocks List of stock items with their details.
-     * @param int|null $limit Maximum number of items returned.
-     * @param int|null $offset Offset used for pagination.
-     * @param int|null $total Total number of items available.
+     * @param array $stocks List of stock details.
+     * @param array $pagination Pagination details (limit, offset, total).
      */
-    public function __construct(array $stocks, ?int $limit, ?int $offset, ?int $total)
+    public function __construct(array $stocks, array $pagination)
     {
         $this->stocks = $stocks;
-        $this->limit = $limit;
-        $this->offset = $offset;
-        $this->total = $total;
+        $this->pagination = $pagination;
     }
 
     /**
@@ -39,32 +33,12 @@ class FbsStocksListResponse
     }
 
     /**
-     * Gets the limit.
+     * Gets the pagination details.
      *
-     * @return int|null
+     * @return array
      */
-    public function getLimit(): ?int
+    public function getPagination(): array
     {
-        return $this->limit;
-    }
-
-    /**
-     * Gets the offset.
-     *
-     * @return int|null
-     */
-    public function getOffset(): ?int
-    {
-        return $this->offset;
-    }
-
-    /**
-     * Gets the total number of items.
-     *
-     * @return int|null
-     */
-    public function getTotal(): ?int
-    {
-        return $this->total;
+        return $this->pagination;
     }
 }

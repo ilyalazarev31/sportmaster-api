@@ -44,7 +44,8 @@ class ProductPricesGetImportTaskByIdClient
                 $response['taskId'] ?? null,
                 $response['status'] ?? null,
                 $response['createdAt'] ?? null,
-                $response['updatedAt'] ?? null
+                $response['updatedAt'] ?? null,
+                $response['productPrices'] ?? null
             );
         } catch (ApiException $e) {
             $this->client->getLogger()->error("Failed to get prices import task status: {$e->getMessage()}, Code: {$e->getErrorCode()}");

@@ -2,6 +2,8 @@
 
 namespace Sportmaster\Api\Response;
 
+use InvalidArgumentException;
+
 /**
  * Response object for creating a product prices import task.
  */
@@ -18,7 +20,7 @@ class ProductPricesCreateImportTaskResponse
     public function __construct(?string $taskId)
     {
         if ($taskId !== null && !preg_match('/^\d{1,20}$/', $taskId)) {
-            throw new \InvalidArgumentException('Invalid taskId format, must be 1–20 digits');
+            throw new InvalidArgumentException('Invalid taskId format, must be 1–20 digits');
         }
         $this->taskId = $taskId;
     }

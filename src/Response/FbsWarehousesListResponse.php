@@ -3,29 +3,23 @@
 namespace Sportmaster\Api\Response;
 
 /**
- * Response object for listing FBS warehouses.
+ * Response object for retrieving a list of seller's warehouses.
  */
 class FbsWarehousesListResponse
 {
-    private array $warehouses;
-    private ?int $limit;
-    private ?int $offset;
-    private ?int $total;
+    private array $items;
+    private array $pagination;
 
     /**
      * FbsWarehousesListResponse constructor.
      *
-     * @param array $warehouses List of warehouses with their details.
-     * @param int|null $limit Maximum number of items returned.
-     * @param int|null $offset Offset used for pagination.
-     * @param int|null $total Total number of items available.
+     * @param array $items List of warehouse details.
+     * @param array $pagination Pagination details (limit, offset, total).
      */
-    public function __construct(array $warehouses, ?int $limit, ?int $offset, ?int $total)
+    public function __construct(array $items, array $pagination)
     {
-        $this->warehouses = $warehouses;
-        $this->limit = $limit;
-        $this->offset = $offset;
-        $this->total = $total;
+        $this->items = $items;
+        $this->pagination = $pagination;
     }
 
     /**
@@ -33,38 +27,18 @@ class FbsWarehousesListResponse
      *
      * @return array
      */
-    public function getWarehouses(): array
+    public function getItems(): array
     {
-        return $this->warehouses;
+        return $this->items;
     }
 
     /**
-     * Gets the limit.
+     * Gets the pagination details.
      *
-     * @return int|null
+     * @return array
      */
-    public function getLimit(): ?int
+    public function getPagination(): array
     {
-        return $this->limit;
-    }
-
-    /**
-     * Gets the offset.
-     *
-     * @return int|null
-     */
-    public function getOffset(): ?int
-    {
-        return $this->offset;
-    }
-
-    /**
-     * Gets the total number of items.
-     *
-     * @return int|null
-     */
-    public function getTotal(): ?int
-    {
-        return $this->total;
+        return $this->pagination;
     }
 }

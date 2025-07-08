@@ -2,10 +2,12 @@
 
 namespace Sportmaster\Api\Exception;
 
+use Exception;
+
 /**
  * Exception thrown when an API request fails.
  */
-class ApiException extends \Exception
+class ApiException extends Exception
 {
     private string $errorCode;
 

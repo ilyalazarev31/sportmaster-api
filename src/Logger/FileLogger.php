@@ -4,6 +4,7 @@ namespace Sportmaster\Api\Logger;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Stringable;
 
 /**
  * File-based logger implementation using Monolog.
@@ -28,10 +29,10 @@ class FileLogger implements LoggerInterface
      * Logs with an arbitrary level.
      *
      * @param mixed $level The log level.
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function log($level, string|\Stringable $message, array $context = []): void
+    public function log($level, string|Stringable $message, array $context = []): void
     {
         $this->logger->log($level, $message, $context);
     }
@@ -39,10 +40,10 @@ class FileLogger implements LoggerInterface
     /**
      * Logs an emergency message.
      *
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function emergency(string|\Stringable $message, array $context = []): void
+    public function emergency(string|Stringable $message, array $context = []): void
     {
         $this->logger->emergency($message, $context);
     }
@@ -50,10 +51,10 @@ class FileLogger implements LoggerInterface
     /**
      * Logs an alert message.
      *
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function alert(string|\Stringable $message, array $context = []): void
+    public function alert(string|Stringable $message, array $context = []): void
     {
         $this->logger->alert($message, $context);
     }
@@ -61,10 +62,10 @@ class FileLogger implements LoggerInterface
     /**
      * Logs a critical message.
      *
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function critical(string|\Stringable $message, array $context = []): void
+    public function critical(string|Stringable $message, array $context = []): void
     {
         $this->logger->critical($message, $context);
     }
@@ -72,10 +73,10 @@ class FileLogger implements LoggerInterface
     /**
      * Logs an error message.
      *
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function error(string|\Stringable $message, array $context = []): void
+    public function error(string|Stringable $message, array $context = []): void
     {
         $this->logger->error($message, $context);
     }
@@ -83,10 +84,10 @@ class FileLogger implements LoggerInterface
     /**
      * Logs a warning message.
      *
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function warning(string|\Stringable $message, array $context = []): void
+    public function warning(string|Stringable $message, array $context = []): void
     {
         $this->logger->warning($message, $context);
     }
@@ -94,10 +95,10 @@ class FileLogger implements LoggerInterface
     /**
      * Logs a notice message.
      *
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function notice(string|\Stringable $message, array $context = []): void
+    public function notice(string|Stringable $message, array $context = []): void
     {
         $this->logger->notice($message, $context);
     }
@@ -105,10 +106,10 @@ class FileLogger implements LoggerInterface
     /**
      * Logs an info message.
      *
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function info(string|\Stringable $message, array $context = []): void
+    public function info(string|Stringable $message, array $context = []): void
     {
         $this->logger->info($message, $context);
     }
@@ -116,10 +117,10 @@ class FileLogger implements LoggerInterface
     /**
      * Logs a debug message.
      *
-     * @param string $message The log message.
+     * @param string|\Stringable $message The log message.
      * @param array $context Additional context.
      */
-    public function debug(string|\Stringable $message, array $context = []): void
+    public function debug(string|Stringable $message, array $context = []): void
     {
         $this->logger->debug($message, $context);
     }

@@ -2,6 +2,8 @@
 
 namespace Sportmaster\Api\Request;
 
+use InvalidArgumentException;
+
 /**
  * Request object for authentication with the Sportmaster Seller API.
  */
@@ -18,7 +20,7 @@ class AuthRequest
     public function __construct(string $apiKey)
     {
         if (!preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $apiKey)) {
-            throw new \InvalidArgumentException('Invalid apiKey format, must be a valid UUID');
+            throw new InvalidArgumentException('Invalid apiKey format, must be a valid UUID');
         }
         $this->apiKey = $apiKey;
     }

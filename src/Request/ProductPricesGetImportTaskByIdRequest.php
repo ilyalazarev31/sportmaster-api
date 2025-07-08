@@ -2,6 +2,8 @@
 
 namespace Sportmaster\Api\Request;
 
+use InvalidArgumentException;
+
 /**
  * Request object for retrieving a product prices import task status by ID.
  */
@@ -18,7 +20,7 @@ class ProductPricesGetImportTaskByIdRequest
     public function __construct(string $taskId)
     {
         if (!preg_match('/^\d{1,20}$/', $taskId)) {
-            throw new \InvalidArgumentException('Invalid taskId format: ' . $taskId);
+            throw new InvalidArgumentException('Invalid taskId format: ' . $taskId);
         }
         $this->taskId = $taskId;
     }

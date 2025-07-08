@@ -2,6 +2,8 @@
 
 namespace Sportmaster\Api\Request;
 
+use InvalidArgumentException;
+
 /**
  * Request object for creating FBS stock import tasks.
  */
@@ -20,14 +22,14 @@ class FbsStocksCreateImportTaskRequest
     public function __construct(string $warehouseId, array $stocks)
     {
         if (!preg_match('/^\d{1,14}$/', $warehouseId)) {
-            throw new \InvalidArgumentException('Invalid warehouseId format, must be 1–14 digits');
+            throw new InvalidArgumentException('Invalid warehouseId format, must be 1–14 digits');
         }
         if (empty($stocks) || count($stocks) > 1000) {
-            throw new \InvalidArgumentException('Stocks array must be non-empty and contain up to 1000 items');
+            throw new InvalidArgumentException('Stocks array must be non-empty and contain up to 1000 items');
         }
         foreach ($stocks as $stock) {
             if (!$stock instanceof StockItem) {
-                throw new \InvalidArgumentException('All stock items must be instances of StockItem');
+                throw new InvalidArgumentException('All stock items must be instances of StockItem');
             }
         }
         $this->warehouseId = $warehouseId;

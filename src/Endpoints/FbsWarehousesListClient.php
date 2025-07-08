@@ -8,7 +8,7 @@ use Sportmaster\Api\Response\FbsWarehousesListResponse;
 use Sportmaster\Api\Exception\ApiException;
 
 /**
- * Client for listing FBS warehouses from the Sportmaster Seller API.
+ * Client for retrieving a list of seller's warehouses from the Sportmaster Seller API.
  */
 class FbsWarehousesListClient
 {
@@ -25,7 +25,7 @@ class FbsWarehousesListClient
     }
 
     /**
-     * Retrieves a list of FBS warehouses.
+     * Retrieves a list of seller's warehouses.
      *
      * @param FbsWarehousesListRequest $request Request object with limit and offset.
      * @return FbsWarehousesListResponse Response containing the list of warehouses and pagination.
@@ -43,12 +43,10 @@ class FbsWarehousesListClient
 
             return new FbsWarehousesListResponse(
                 $response['items'] ?? [],
-                $response['pagination']['limit'] ?? null,
-                $response['pagination']['offset'] ?? null,
-                $response['pagination']['total'] ?? null
+                $response['pagination'] ?? []
             );
         } catch (ApiException $e) {
-            $this->client->getLogger()->error("Failed to list FBS warehouses: {$e->getMessage()}, Code: {$e->getErrorCode()}");
+            $this->client->getLogger()->error("Failed to list warehouses: {$e->getMessage()}, Code: {$e->getErrorCode()}");
             throw $e;
         }
     }

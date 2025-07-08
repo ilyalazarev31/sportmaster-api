@@ -2,9 +2,11 @@
 
 namespace Sportmaster\Api\Tests;
 
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Sportmaster\Api\Client;
 use Sportmaster\Api\Endpoints\FbsStocksListClient;
+use Sportmaster\Api\Exception\ApiException;
 use Sportmaster\Api\Request\FbsStocksListRequest;
 use Sportmaster\Api\TokenStorage\TokenStorageInterface;
 use Sportmaster\Api\Logger\LoggerInterface;
@@ -35,22 +37,31 @@ class FbsStocksListClientTest extends TestCase
                     ],
                 ],
                 'pagination' => ['limit' => 20, 'offset' => 0, 'total' => 1],
-            ])),
+            ], JSON_THROW_ON_ERROR)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new GuzzleClient(['handler' => $handlerStack]);
-        $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        try {
+            $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        } catch (Exception $e) {
+        }
         $tokenStorage->method('getToken')->willReturn('test_token');
         $tokenStorage->method('isTokenExpired')->willReturn(false);
-        $logger = $this->createMock(LoggerInterface::class);
+        try {
+            $logger = $this->createMock(LoggerInterface::class);
+        } catch (Exception $e) {
+        }
 
         $client = new Client($httpClient, $tokenStorage, $logger);
         $client->setClientId('14700005');
         $stocksClient = new FbsStocksListClient($client);
 
         $request = new FbsStocksListRequest('32660299', 20, 0);
-        $response = $stocksClient->list($request);
+        try {
+            $response = $stocksClient->list($request);
+        } catch (ApiException $e) {
+        }
 
         $this->assertCount(1, $response->getStocks());
         $this->assertEquals('EIFJM1VRHE', $response->getStocks()[0]['offerId']);
@@ -65,13 +76,19 @@ class FbsStocksListClientTest extends TestCase
             new Response(400, [], json_encode([
                 'errorMessage' => 'Invalid warehouseId',
                 'errorCode' => 'BAD_REQUEST',
-            ])),
+            ], JSON_THROW_ON_ERROR)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new GuzzleClient(['handler' => $handlerStack]);
-        $tokenStorage = $this->createMock(TokenStorageInterface::class);
-        $logger = $this->createMock(LoggerInterface::class);
+        try {
+            $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        } catch (Exception $e) {
+        }
+        try {
+            $logger = $this->createMock(LoggerInterface::class);
+        } catch (Exception $e) {
+        }
 
         $client = new Client($httpClient, $tokenStorage, $logger);
         $client->setClientId('14700005');

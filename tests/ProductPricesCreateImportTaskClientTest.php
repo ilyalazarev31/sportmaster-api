@@ -2,9 +2,11 @@
 
 namespace Sportmaster\Api\Tests;
 
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Sportmaster\Api\Client;
 use Sportmaster\Api\Endpoints\ProductPricesCreateImportTaskClient;
+use Sportmaster\Api\Exception\ApiException;
 use Sportmaster\Api\Request\ProductPricesCreateImportTaskRequest;
 use Sportmaster\Api\Request\PriceItem;
 use Sportmaster\Api\TokenStorage\TokenStorageInterface;
@@ -21,15 +23,21 @@ class ProductPricesCreateImportTaskClientTest extends TestCase
         $mock = new MockHandler([
             new Response(200, [], json_encode([
                 'taskId' => '1245212',
-            ])),
+            ], JSON_THROW_ON_ERROR)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new GuzzleClient(['handler' => $handlerStack]);
-        $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        try {
+            $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        } catch (Exception $e) {
+        }
         $tokenStorage->method('getToken')->willReturn('test_token');
         $tokenStorage->method('isTokenExpired')->willReturn(false);
-        $logger = $this->createMock(LoggerInterface::class);
+        try {
+            $logger = $this->createMock(LoggerInterface::class);
+        } catch (Exception $e) {
+        }
 
         $client = new Client($httpClient, $tokenStorage, $logger);
         $client->setClientId('14700005');
@@ -40,7 +48,10 @@ class ProductPricesCreateImportTaskClientTest extends TestCase
             new PriceItem('M04IPXX5KS', 600),
         ];
         $request = new ProductPricesCreateImportTaskRequest($prices);
-        $response = $importClient->create($request);
+        try {
+            $response = $importClient->create($request);
+        } catch (ApiException $e) {
+        }
 
         $this->assertEquals('1245212', $response->getTaskId());
     }
@@ -51,13 +62,19 @@ class ProductPricesCreateImportTaskClientTest extends TestCase
             new Response(400, [], json_encode([
                 'errorMessage' => 'Invalid request parameters',
                 'errorCode' => 'BAD_REQUEST',
-            ])),
+            ], JSON_THROW_ON_ERROR)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new GuzzleClient(['handler' => $handlerStack]);
-        $tokenStorage = $this->createMock(TokenStorageInterface::class);
-        $logger = $this->createMock(LoggerInterface::class);
+        try {
+            $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        } catch (Exception $e) {
+        }
+        try {
+            $logger = $this->createMock(LoggerInterface::class);
+        } catch (Exception $e) {
+        }
 
         $client = new Client($httpClient, $tokenStorage, $logger);
         $client->setClientId('14700005');
@@ -78,13 +95,19 @@ class ProductPricesCreateImportTaskClientTest extends TestCase
             new Response(401, [], json_encode([
                 'errorMessage' => 'Unauthorized',
                 'errorCode' => 'UNAUTHORIZED',
-            ])),
+            ], JSON_THROW_ON_ERROR)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new GuzzleClient(['handler' => $handlerStack]);
-        $tokenStorage = $this->createMock(TokenStorageInterface::class);
-        $logger = $this->createMock(LoggerInterface::class);
+        try {
+            $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        } catch (Exception $e) {
+        }
+        try {
+            $logger = $this->createMock(LoggerInterface::class);
+        } catch (Exception $e) {
+        }
 
         $client = new Client($httpClient, $tokenStorage, $logger);
         $client->setClientId('14700005');
@@ -105,13 +128,19 @@ class ProductPricesCreateImportTaskClientTest extends TestCase
             new Response(403, [], json_encode([
                 'errorMessage' => 'Forbidden',
                 'errorCode' => 'FORBIDDEN',
-            ])),
+            ], JSON_THROW_ON_ERROR)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new GuzzleClient(['handler' => $handlerStack]);
-        $tokenStorage = $this->createMock(TokenStorageInterface::class);
-        $logger = $this->createMock(LoggerInterface::class);
+        try {
+            $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        } catch (Exception $e) {
+        }
+        try {
+            $logger = $this->createMock(LoggerInterface::class);
+        } catch (Exception $e) {
+        }
 
         $client = new Client($httpClient, $tokenStorage, $logger);
         $client->setClientId('14700005');
@@ -132,13 +161,19 @@ class ProductPricesCreateImportTaskClientTest extends TestCase
             new Response(429, [], json_encode([
                 'errorMessage' => 'Too many requests',
                 'errorCode' => 'TOO_MANY_REQUESTS',
-            ])),
+            ], JSON_THROW_ON_ERROR)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new GuzzleClient(['handler' => $handlerStack]);
-        $tokenStorage = $this->createMock(TokenStorageInterface::class);
-        $logger = $this->createMock(LoggerInterface::class);
+        try {
+            $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        } catch (Exception $e) {
+        }
+        try {
+            $logger = $this->createMock(LoggerInterface::class);
+        } catch (Exception $e) {
+        }
 
         $client = new Client($httpClient, $tokenStorage, $logger);
         $client->setClientId('14700005');
@@ -159,13 +194,19 @@ class ProductPricesCreateImportTaskClientTest extends TestCase
             new Response(500, [], json_encode([
                 'errorMessage' => 'Internal server error',
                 'errorCode' => 'INTERNAL_SERVER_ERROR',
-            ])),
+            ], JSON_THROW_ON_ERROR)),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
         $httpClient = new GuzzleClient(['handler' => $handlerStack]);
-        $tokenStorage = $this->createMock(TokenStorageInterface::class);
-        $logger = $this->createMock(LoggerInterface::class);
+        try {
+            $tokenStorage = $this->createMock(TokenStorageInterface::class);
+        } catch (Exception $e) {
+        }
+        try {
+            $logger = $this->createMock(LoggerInterface::class);
+        } catch (Exception $e) {
+        }
 
         $client = new Client($httpClient, $tokenStorage, $logger);
         $client->setClientId('14700005');

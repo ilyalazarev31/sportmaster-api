@@ -2,6 +2,8 @@
 
 namespace Sportmaster\Api\Request;
 
+use InvalidArgumentException;
+
 /**
  * Request object for creating a product prices import task.
  */
@@ -18,10 +20,10 @@ class ProductPricesCreateImportTaskRequest
     public function __construct(array $productPrices)
     {
         if (empty($productPrices)) {
-            throw new \InvalidArgumentException('productPrices cannot be empty');
+            throw new InvalidArgumentException('productPrices cannot be empty');
         }
         if (count($productPrices) > 1000) {
-            throw new \InvalidArgumentException('productPrices cannot exceed 1000 items');
+            throw new InvalidArgumentException('productPrices cannot exceed 1000 items');
         }
         $this->productPrices = $productPrices;
     }
@@ -56,8 +58,8 @@ class PriceItem
      */
     public function __construct(string $offerId, float $price, ?float $discountPrice = null)
     {
-        if (!preg_match('/^[A-Za-zА-Яа-я0-9 #+*-./^_"]{1,50}$/', $offerId)) {
-            throw new \InvalidArgumentException('Invalid offerId format: ' . $offerId);
+        if (!preg_match('/^[A-Za-zА-Яа-я0-9 #+*-.\/^_"]{1,50}$/u', $offerId)) {
+            throw new InvalidArgumentException('Invalid offerId format: ' . $offerId);
         }
         $this->offerId = $offerId;
         $this->price = $price;

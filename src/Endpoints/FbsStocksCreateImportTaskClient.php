@@ -36,7 +36,7 @@ class FbsStocksCreateImportTaskClient
         try {
             $data = [
                 'warehouseId' => $request->getWarehouseId(),
-                'stocks' => array_map(function ($item) {
+                'stocks' => array_map(static function ($item) {
                     return [
                         'offerId' => $item->getOfferId(),
                         'warehouseStock' => $item->getWarehouseStock(),

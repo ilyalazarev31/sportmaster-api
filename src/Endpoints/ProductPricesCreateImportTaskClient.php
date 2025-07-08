@@ -35,7 +35,7 @@ class ProductPricesCreateImportTaskClient
     {
         try {
             $data = [
-                'productPrices' => array_map(fn($price) => [
+                'productPrices' => array_map(static fn($price) => [
                     'offerId' => $price->getOfferId(),
                     'price' => $price->getPrice(),
                     'discountPrice' => $price->getDiscountPrice(),

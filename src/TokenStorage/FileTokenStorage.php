@@ -31,7 +31,7 @@ class FileTokenStorage implements TokenStorageInterface
             'access_token' => $token,
             'expires_at' => $expiresAt,
         ];
-        file_put_contents($this->filePath, json_encode($data));
+        file_put_contents($this->filePath, json_encode($data, JSON_THROW_ON_ERROR));
     }
 
     /**
@@ -44,7 +44,7 @@ class FileTokenStorage implements TokenStorageInterface
         if (!file_exists($this->filePath)) {
             return null;
         }
-        $data = json_decode(file_get_contents($this->filePath), true);
+        $data = json_decode(file_get_contents($this->filePath), true, 512, JSON_THROW_ON_ERROR);
         return $data['access_token'] ?? null;
     }
 
@@ -58,7 +58,7 @@ class FileTokenStorage implements TokenStorageInterface
         if (!file_exists($this->filePath)) {
             return true;
         }
-        $data = json_decode(file_get_contents($this->filePath), true);
+        $data = json_decode(file_get_contents($this->filePath), true, 512, JSON_THROW_ON_ERROR);
         $expiresAt = $data['expires_at'] ?? 0;
         return time() >= $expiresAt;
     }

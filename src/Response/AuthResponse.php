@@ -2,6 +2,8 @@
 
 namespace Sportmaster\Api\Response;
 
+use InvalidArgumentException;
+
 /**
  * Response object for authentication with the Sportmaster Seller API.
  */
@@ -22,10 +24,10 @@ class AuthResponse
     public function __construct(?string $accessToken, ?int $expiresIn, ?string $tokenType)
     {
         if ($accessToken !== null && strlen($accessToken) > 2000) {
-            throw new \InvalidArgumentException('Access token must be 2000 characters or less');
+            throw new InvalidArgumentException('Access token must be 2000 characters or less');
         }
         if ($tokenType !== null && strlen($tokenType) > 20) {
-            throw new \InvalidArgumentException('Token type must be 20 characters or less');
+            throw new InvalidArgumentException('Token type must be 20 characters or less');
         }
         $this->accessToken = $accessToken;
         $this->expiresIn = $expiresIn;
