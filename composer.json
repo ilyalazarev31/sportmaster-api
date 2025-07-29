@@ -27,13 +27,6 @@
             "Sportmaster\\Api\\Tests\\": "tests/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Sportmaster\\Api\\Laravel\\SportmasterApiServiceProvider"
-            ]
-        }
-    },
     "scripts": {
         "test": "vendor/bin/phpunit tests"
     }
